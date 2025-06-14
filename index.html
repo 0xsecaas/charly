@@ -7,19 +7,54 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div class="chat-container">
+        <!-- Theme Toggle Button with Sun/Moon -->
+        <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+        >
+            <span id="theme-icon">🌚</span>
+        </button>
+
+        <br />
+
+        <!-- Title & Tagline Section -->
+        <div class="section">
+            <h1>Rusty Blockchain</h1>
+            <p class="tagline">
+                Building and Securing Blockchain Protocols with Rust
+            </p>
+            <a title="My Thoughts" href="#blog" class="links"> Blog </a>
+        </div>
+
+        <!-- Chatbox Section -->
+        <div class="section chat-container">
             <div id="chat-box" class="chat-box"></div>
             <form id="chat-form">
                 <input
                     type="text"
                     id="user-input"
-                    placeholder="Type your message..."
+                    placeholder="Talk to my junior assistant"
                     autocomplete="off"
                     required
                 />
                 <button type="submit">Send</button>
             </form>
         </div>
+
+        <div>
+            <span class="visually-hidden">Send me a message</span>
+            <a
+                title="Get in touch"
+                href="#tally-open=mOev87&tally-emoji-text=👋&tally-emoji-animation=wave"
+                class="links linksIcon"
+                >✉
+            </a>
+        </div>
+
+        <!-- Tally Script -->
+        <script async src="https://tally.so/widgets/embed.js"></script>
+        <!-- Your own script -->
         <script src="script.js"></script>
     </body>
 </html>

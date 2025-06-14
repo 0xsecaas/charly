@@ -31,3 +31,21 @@ function generateBotReply(input) {
     return "Rust is memory-safe and ideal for blockchain.";
   return "I'm just a basic bot. Ask me about Rust or Ethereum.";
 }
+
+function toggleTheme() {
+  document.body.classList.toggle("light-theme");
+  const isLight = document.body.classList.contains("light-theme");
+  document.getElementById("theme-icon").textContent = isLight ? "🌚" : "🌞";
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+}
+
+// Set correct icon on page load
+window.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light") {
+    document.body.classList.add("light-theme");
+    document.getElementById("theme-icon").textContent = "🌚";
+  } else {
+    document.getElementById("theme-icon").textContent = "🌞";
+  }
+});
