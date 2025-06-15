@@ -4,7 +4,6 @@ const form = document.getElementById("chat-form");
 const input = document.getElementById("user-input");
 const chatBox = document.getElementById("chat-box");
 
-// Typing indicator element
 const typingIndicator = document.createElement("div");
 typingIndicator.classList.add("bot");
 typingIndicator.innerHTML = `<div class="dots">
@@ -14,7 +13,6 @@ typingIndicator.innerHTML = `<div class="dots">
 </div>
 `;
 
-// Chatbot greeting after 3 seconds
 window.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "light") {
@@ -35,25 +33,24 @@ window.addEventListener("DOMContentLoaded", () => {
     removeTypingIndicator();
 
     for (let i = 0; i < welcome.length; i++) {
-      botDiv.textContent += welcome[i];
+      const span = document.createElement("span");
+      span.textContent = welcome[i];
+      span.classList.add("fade-in");
+      botDiv.appendChild(span);
       await new Promise((r) => setTimeout(r, 30));
     }
-    removeTypingIndicator();
   }, 3000);
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
     const message = input.value.trim();
-    if (!message || message.length > 1000) {
-      return; // prevent abuse or oversized messages
-    }
+    if (!message || message.length > 1000) return;
 
     appendMessage("user", message);
     chatHistory.push({ role: "user", content: message });
     input.value = "";
 
     showTypingIndicator();
-
     const reply = await fetchBotReply(chatHistory);
     chatHistory.push({ role: "assistant", content: reply });
   });
@@ -94,7 +91,10 @@ async function fetchBotReply(messages) {
     const reader = res.body.getReader();
     const decoder = new TextDecoder("utf-8");
     let buffer = "";
+    let displayBuffer = "";
     let fullText = "";
+    let currentIndex = 0;
+    let renderTimeout = null;
 
     const partialDiv = document.createElement("div");
     partialDiv.classList.add("bot");
@@ -102,27 +102,50 @@ async function fetchBotReply(messages) {
 
     removeTypingIndicator();
 
+    function renderNextChar() {
+      if (currentIndex < displayBuffer.length) {
+        const span = document.createElement("span");
+        span.textContent = displayBuffer[currentIndex];
+        span.classList.add("fade-in");
+        partialDiv.appendChild(span);
+        fullText += displayBuffer[currentIndex];
+        currentIndex++;
+        renderTimeout = setTimeout(renderNextChar, 30);
+      } else {
+        renderTimeout = null;
+      }
+    }
+
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
 
       buffer += decoder.decode(value, { stream: true });
-
-      // Split into SSE lines
       const lines = buffer.split("\n");
-      buffer = lines.pop(); // Keep last partial line
+      buffer = lines.pop();
 
       for (const line of lines) {
         if (line.startsWith("data: ")) {
           const data = line.slice("data: ".length).trim();
-
-          if (data === "[DONE]") break;
+          if (data === "[DONE]") {
+            // Wait until all buffered chars are rendered
+            return new Promise((resolve) => {
+              const finish = () => {
+                if (currentIndex >= displayBuffer.length) {
+                  resolve(fullText.trim());
+                } else {
+                  setTimeout(finish, 30);
+                }
+              };
+              finish();
+            });
+          }
 
           try {
             const json = JSON.parse(data);
             if (json.response) {
-              fullText += json.response;
-              partialDiv.textContent = fullText;
+              displayBuffer += json.response;
+              if (!renderTimeout) renderNextChar();
             }
           } catch (e) {
             console.error("JSON parse error", e, data);
@@ -131,7 +154,16 @@ async function fetchBotReply(messages) {
       }
     }
 
-    return fullText.trim();
+    return new Promise((resolve) => {
+      const finish = () => {
+        if (currentIndex >= displayBuffer.length) {
+          resolve(fullText.trim());
+        } else {
+          setTimeout(finish, 30);
+        }
+      };
+      finish();
+    });
   } catch (err) {
     console.error(err);
     return "⚠️ Assistant is unavailable at the moment. will be back within 24 hours or sooner if you get in touch and let me know.";

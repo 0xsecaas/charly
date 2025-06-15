@@ -403,3 +403,14 @@ body:not(.light-theme) .availability {
     background-color: #ffe680;
     transition: all 0.25s ease, color 0.25s ease;
 }
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.6s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
