@@ -1,60 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Simple Chatbot</title>
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <!-- Theme Toggle Button with Sun/Moon -->
-        <button
-            class="theme-toggle"
-            onclick="toggleTheme()"
-            aria-label="Toggle theme"
-        >
-            <span id="theme-icon">🌚</span>
-        </button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Referrer-Policy" content="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Chatbot</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Theme Toggle Button with Sun/Moon -->
+    <button
+      class="theme-toggle"
+      onclick="toggleTheme()"
+      aria-label="Toggle theme"
+    >
+      <span id="theme-icon">🌚</span>
+    </button>
 
-        <br />
+    <br />
 
-        <!-- Title & Tagline Section -->
-        <div class="section">
-            <h1>Rusty Blockchain</h1>
-            <p class="tagline">
-                Building and Securing Blockchain Protocols with Rust
-            </p>
-            <a title="My Thoughts" href="#blog" class="links"> Blog </a>
-        </div>
+    <!-- Title & Tagline Section -->
+    <div class="section">
+      <h1>Rusty Blockchain</h1>
+      <p class="tagline">
+        Building and Securing Blockchain Protocols with Rust
+      </p>
+      <a title="My Thoughts" href="#blog" class="links"> Blog </a>
+    </div>
 
-        <!-- Chatbox Section -->
-        <div class="section chat-container">
-            <div id="chat-box" class="chat-box"></div>
-            <form id="chat-form">
-                <input
-                    type="text"
-                    id="user-input"
-                    placeholder="Talk to my junior assistant"
-                    autocomplete="off"
-                    required
-                />
-                <button type="submit">Send</button>
-            </form>
-        </div>
+    <!-- Chatbox Section -->
+    <div class="section chat-container">
+      <div id="chat-box" class="chat-box"></div>
+      <form id="chat-form">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Talk to my junior assistant"
+          autocomplete="off"
+          required
+        />
+        <button type="submit">Send</button>
+      </form>
+    </div>
 
-        <div>
-            <span class="visually-hidden">Send me a message</span>
-            <a
-                title="Get in touch"
-                href="#tally-open=mOev87&tally-emoji-text=👋&tally-emoji-animation=wave"
-                class="links linksIcon"
-                >✉
-            </a>
-        </div>
+    <div>
+      <a
+        title="Get in touch"
+        href="https://tally.so/r/mOev87"
+        class="links linksIcon"
+        target="_blank"
+        >✉
+      </a>
+    </div>
 
-        <!-- Tally Script -->
-        <script async src="https://tally.so/widgets/embed.js"></script>
-        <!-- Your own script -->
-        <script src="script.js"></script>
-    </body>
+    <!-- Tally Script -->
+    <script async src="https://tally.so/widgets/embed.js"></script>
+    <!-- Your own script -->
+    <script src="script.js"></script>
+  </body>
 </html>
