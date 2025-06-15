@@ -24,14 +24,28 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("theme-icon").textContent = "🌚";
   }
 
-  setTimeout(() => {
-    appendMessage("bot", "Welcome, ask me about Rust or Ethereum.");
-  }, 1500);
+  showTypingIndicator();
+  setTimeout(async () => {
+    const welcome = "Welcome, ask me about Rust or Ethereum.";
+    const botDiv = document.createElement("div");
+    botDiv.classList.add("bot");
+    chatBox.appendChild(botDiv);
+
+    removeTypingIndicator();
+
+    for (let i = 0; i < welcome.length; i++) {
+      botDiv.textContent += welcome[i];
+      await new Promise((r) => setTimeout(r, 30));
+    }
+    removeTypingIndicator();
+  }, 3000);
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
     const message = input.value.trim();
-    if (!message) return;
+    if (!message || message.length > 1000) {
+      return; // prevent abuse or oversized messages
+    }
 
     appendMessage("user", message);
     chatHistory.push({ role: "user", content: message });
