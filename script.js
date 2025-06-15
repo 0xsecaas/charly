@@ -26,7 +26,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   showTypingIndicator();
   setTimeout(async () => {
-    const welcome = "Welcome, ask me about Rust or Ethereum.";
+    const welcome = "Hi, this is Charly, how can I help you today?";
     const botDiv = document.createElement("div");
     botDiv.classList.add("bot");
     chatBox.appendChild(botDiv);
