@@ -40,7 +40,6 @@ body {
 }
 
 .theme-toggle {
-    positions: absolute;
     top: 1rem;
     right: 1rem;
     background: none;
@@ -167,9 +166,6 @@ iframe {
     display: inline-block;
     margin-right: 1rem;
     transition: transform 0.3s ease;
-}
-
-.links {
     color: var(--button-bg);
     text-decoration: none;
 }
@@ -179,6 +175,7 @@ iframe {
 }
 
 .links:hover {
+    cursor: pointer;
     color: var(--button-hover);
     transform: scale(1.4);
     text-decoration: underline;
