@@ -270,18 +270,18 @@ body:not(.light-theme) .bot {
     width: 100%;
 }
 
-button {
+.btn {
     background: var(--button-bg);
     color: #000;
     transition: all 0.3s ease;
     font-weight: bold;
 }
 
-button:hover {
+.btn:hover {
     background: var(--button-hover);
 }
 
-button[type="submit"] {
+.btn {
     padding: 10px 16px;
     border: none;
     border-radius: 0 4px 4px 0;
@@ -308,8 +308,8 @@ iframe {
 
 .links {
     display: inline-block;
-    margin-right: 1rem;
-    transition: transform 0.3s ease;
+    /* margin-right: 1rem; */
+    transition: transform 0.6s ease;
     color: var(--button-bg);
     text-decoration: none;
 }
@@ -321,8 +321,8 @@ iframe {
 .links:hover {
     cursor: pointer;
     color: var(--button-hover);
-    transform: scale(1.4);
-    text-decoration: underline;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
 }
 
 .visually-hidden {
@@ -358,13 +358,48 @@ iframe {
     }
 }
 
-.footer {
-    position: relative;
-    color: var(--text-color);
+.availability {
     text-align: center;
-    padding: 3rem 1rem 2rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    user-select: none;
-    border-top: 1px solid var(--border-color);
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    background-color: var(--platinum);
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: 1.5px solid #c2c2c8;
+    border-radius: 8px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+body:not(.light-theme) .availability {
+    background-color: var(--gray-800);
+    /* dark card bg */
+    color: var(--text-color);
+    /* light text */
+    border-color: var(--border-color);
+}
+
+.availability a:hover,
+.availability a:focus {
+    transform: scale(1.1);
+    outline: none;
+}
+
+.btn-hire {
+    color: var(--bot-text-light);
+    padding: 10px 18px;
+    border-radius: 8px;
+    background-color: transparent;
+    font-weight: 700;
+    margin-top: 0.6rem;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffe680;
+    transition: all 0.25s ease, color 0.25s ease;
 }

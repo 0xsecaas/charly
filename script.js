@@ -26,7 +26,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   showTypingIndicator();
   setTimeout(async () => {
-    const welcome = "Hi, this is Charly, how can I help you today?";
+    const welcome =
+      "Hi, I’m Charly — a Rust blockchain security engineer focused on Ethereum clients. How can I help you today?";
     const botDiv = document.createElement("div");
     botDiv.classList.add("bot");
     chatBox.appendChild(botDiv);
