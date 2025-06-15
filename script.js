@@ -1,3 +1,5 @@
+const chatHistory = [];
+
 const form = document.getElementById("chat-form");
 const input = document.getElementById("user-input");
 const chatBox = document.getElementById("chat-box");
@@ -17,32 +19,29 @@ window.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "light") {
     document.body.classList.add("light-theme");
-    document.getElementById("theme-icon").textContent = "🌚";
-  } else {
     document.getElementById("theme-icon").textContent = "🌞";
+  } else {
+    document.getElementById("theme-icon").textContent = "🌚";
   }
 
   setTimeout(() => {
     appendMessage("bot", "Welcome, ask me about Rust or Ethereum.");
-  }, 3000);
-});
+  }, 1500);
 
-const chatHistory = [];
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const message = input.value.trim();
+    if (!message) return;
 
-form.addEventListener("submit", async function (e) {
-  e.preventDefault();
-  const message = input.value.trim();
-  if (!message) return;
+    appendMessage("user", message);
+    chatHistory.push({ role: "user", content: message });
+    input.value = "";
 
-  appendMessage("user", message);
-  chatHistory.push({ role: "user", content: message });
-  input.value = "";
+    showTypingIndicator();
 
-  showTypingIndicator();
-
-  const reply = await fetchBotReply(chatHistory);
-  if (reply) appendMessage("bot", reply);
-  chatHistory.push({ role: "assistant", content: reply });
+    const reply = await fetchBotReply(chatHistory);
+    chatHistory.push({ role: "assistant", content: reply });
+  });
 });
 
 function appendMessage(sender, message, extraClass = "") {
@@ -120,13 +119,13 @@ async function fetchBotReply(messages) {
     return fullText.trim();
   } catch (err) {
     console.error(err);
-    return "⚠️ Assistant is unavailable at the moment.";
+    return "⚠️ Assistant is unavailable at the moment. will be back within 24 hours or sooner if you get in touch and let me know.";
   }
 }
 
 function toggleTheme() {
   document.body.classList.toggle("light-theme");
   const isLight = document.body.classList.contains("light-theme");
-  document.getElementById("theme-icon").textContent = isLight ? "🌚" : "🌞";
+  document.getElementById("theme-icon").textContent = isLight ? "🌞" : "🌚";
   localStorage.setItem("theme", isLight ? "light" : "dark");
 }
