@@ -22,24 +22,43 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("theme-icon").textContent = "🌚";
   }
 
-  showTypingIndicator();
-  setTimeout(async () => {
-    const welcome =
-      "Hi, I’m Charly — a Rust blockchain security engineer focused on Ethereum clients. How can I help you today?";
-    const botDiv = document.createElement("div");
-    botDiv.classList.add("bot");
-    chatBox.appendChild(botDiv);
+  // Blur overlay logic
+  const blurOverlay = document.getElementById("chat-blur-overlay");
+  const chatForm = document.getElementById("chat-form");
+  const chatInput = document.getElementById("user-input");
+  chatForm.style.pointerEvents = "none";
+  chatInput.blur();
 
-    removeTypingIndicator();
+  function showGreeting() {
+    showTypingIndicator();
+    setTimeout(async () => {
+      const welcome =
+        "Hi, I’m Charly — a Rust blockchain security engineer focused on Ethereum clients. How can I help you today?";
+      const botDiv = document.createElement("div");
+      botDiv.classList.add("bot");
+      chatBox.appendChild(botDiv);
 
-    for (let i = 0; i < welcome.length; i++) {
-      const span = document.createElement("span");
-      span.textContent = welcome[i];
-      span.classList.add("fade-in");
-      botDiv.appendChild(span);
-      await new Promise((r) => setTimeout(r, 30));
-    }
-  }, 3000);
+      removeTypingIndicator();
+
+      for (let i = 0; i < welcome.length; i++) {
+        const span = document.createElement("span");
+        span.textContent = welcome[i];
+        span.classList.add("fade-in");
+        botDiv.appendChild(span);
+        await new Promise((r) => setTimeout(r, 30));
+      }
+    }, 100); // 100ms after unblur
+  }
+
+  blurOverlay.addEventListener("click", () => {
+    blurOverlay.classList.add("hide");
+    setTimeout(() => {
+      blurOverlay.style.display = "none";
+      chatForm.style.pointerEvents = "auto";
+      chatInput.focus();
+      showGreeting();
+    }, 400); // match CSS transition
+  });
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();

@@ -30,13 +30,16 @@
     </div>
 
     <!-- Chatbox Section -->
-    <div class="section chat-container">
+    <div class="section chat-container" style="position:relative;">
+      <div id="chat-blur-overlay" class="chat-blur-overlay">
+        <span class="chat-blur-text">Click to Ask</span>
+      </div>
       <div id="chat-box" class="chat-box"></div>
       <form id="chat-form">
         <input
           type="text"
           id="user-input"
-          placeholder="Ask anything work related"
+          placeholder="Ask about Charly"
           autocomplete="off"
           required
         />
@@ -45,6 +48,7 @@
     </div>
 
     <div>
+      <!-- Availability Section -->
       <p class="availability">
         🦀
         <strong>Secure Your Protocol</strong>
@@ -57,7 +61,7 @@
           rel="noopener"
           title="Contact Me to Hire"
         >
-          Let's Work Together
+          Work with me
         </a>
       </p>
     </div>

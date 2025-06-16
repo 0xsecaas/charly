@@ -136,6 +136,43 @@ p.tagline {
     flex-direction: column;
 }
 
+.chat-container {
+    position: relative;
+}
+
+.chat-blur-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 30, 30, 0.5);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    border-radius: 8px;
+    transition: opacity 0.4s ease, backdrop-filter 0.4s ease;
+    cursor: pointer;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.chat-blur-overlay.hide {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    pointer-events: none;
+}
+
+.chat-blur-text {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-shadow: 0 2px 8px #000, 0 0 2px #fff;
+    letter-spacing: 1px;
+}
+
 /* User message: aligned right */
 .user {
     position: relative;
