@@ -24,27 +24,9 @@
     <div class="section">
       <h1>Rusty Blockchain</h1>
       <p class="tagline">
-        Building and Securing Blockchain Protocols with Rust
+        Protocols, Clients & Smart Contracts — Rust Across Chains
       </p>
       <!-- <a title="My Thoughts" href="#blog" class="links"> Blog </a> -->
-    </div>
-
-    <!-- Chatbox Section -->
-    <div class="section chat-container" style="position:relative;">
-      <div id="chat-blur-overlay" class="chat-blur-overlay">
-        <span class="chat-blur-text">Click to Ask</span>
-      </div>
-      <div id="chat-box" class="chat-box"></div>
-      <form id="chat-form">
-        <input
-          type="text"
-          id="user-input"
-          placeholder="Ask about Charly"
-          autocomplete="off"
-          required
-        />
-        <button class="btn" type="submit">Chat</button>
-      </form>
     </div>
 
     <div>
@@ -55,15 +37,67 @@
         🦀
         <br />
         <a
-          href="https://tally.so/r/mOev87"
-          class="btn-hire"
+          id="btn-hire"
+          href="#"
           target="_blank"
           rel="noopener"
-          title="Contact Me to Hire"
+          class="btn-hire"
+          >Work with me</a
         >
-          Work with me
-        </a>
       </p>
+    </div>
+
+    <!-- Chatbox Section -->
+    <div class="section chat-container" style="position: relative">
+      <div id="chat-blur-overlay" class="chat-blur-overlay">
+        <span class="chat-blur-text">🤖 click me!</span>
+      </div>
+      <div id="chat-box" class="chat-box"></div>
+      <form id="chat-form">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="What's on your mind?"
+          autocomplete="off"
+          required
+        />
+        <button class="btn" type="submit">Chat</button>
+      </form>
+    </div>
+
+    <!-- Work Modal -->
+    <div id="work-modal-overlay" class="work-modal-overlay">
+      <div class="work-modal-content">
+        <button class="work-modal-close" title="Close">&times;</button>
+        <div class="work-modal-message">
+          <div class="work-modal-avatar">
+            <img
+              src="https://rustacean.net/assets/cuddlyferris.png"
+              alt="Rustacean Ferris"
+            />
+          </div>
+          <h2 class="work-modal-title">Let’s get to work</h2>
+          <p class="work-modal-desc">
+            I work on blockchain protocols in Rust — whether it’s infrastructure
+            like Ethereum, Polkadot, Solana, or high-assurance smart contracts.
+          </p>
+          <p class="work-modal-desc-2">
+            If you're building core systems and need deep Rust expertise, let's
+            connect.
+          </p>
+          <p class="work-modal-desc-3">
+            I only take on projects where Rust, protocol depth, or contract
+            safety really matter.
+          </p>
+          <a
+            href="https://tally.so/r/mOev87"
+            target="_blank"
+            rel="noopener"
+            class="btn-hire work-modal-contact"
+            >Start the Conversation</a
+          >
+        </div>
+      </div>
     </div>
 
     <!-- Your own script -->

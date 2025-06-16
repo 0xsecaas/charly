@@ -195,3 +195,42 @@ function toggleTheme() {
   document.getElementById("theme-icon").textContent = isLight ? "🌞" : "🌚";
   localStorage.setItem("theme", isLight ? "light" : "dark");
 }
+
+// Modal overlay
+function showWorkModal() {
+  const modal = document.getElementById("work-modal-overlay");
+  if (!modal) return;
+  modal.classList.add("show");
+  document.body.classList.add("modal-open");
+}
+
+function closeWorkModal() {
+  const modal = document.getElementById("work-modal-overlay");
+  if (modal) {
+    modal.classList.remove("show");
+    setTimeout(() => {
+      document.body.classList.remove("modal-open");
+    }, 300);
+  }
+}
+
+// Add ESC key support for closing the modal
+window.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    closeWorkModal();
+  }
+});
+
+document.addEventListener("click", function (e) {
+  const target = e.target;
+  if (target.id === "btn-hire") {
+    e.preventDefault();
+    showWorkModal();
+  }
+  if (
+    target.classList.contains("work-modal-close") ||
+    target.id === "work-modal-overlay"
+  ) {
+    closeWorkModal();
+  }
+});
