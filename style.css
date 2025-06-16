@@ -544,7 +544,6 @@ body:not(.light-theme) .availability {
     height: 60px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #fff;
 }
 
 .work-modal-desc {
@@ -567,76 +566,84 @@ body:not(.light-theme) .availability {
 }
 
 @media (max-width: 600px) {
-  .work-modal-content {
-    max-width: 98vw;
-    width: 98vw;
-    min-height: 60vh;
-    max-height: 90vh;
-    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
-    font-size: 1em;
-    border-radius: 12px;
-    overflow-y: auto;
-    box-sizing: border-box;
-  }
-  .work-modal-message {
-    max-height: 65vh;
-    overflow-y: auto;
-    padding-bottom: 1.5em;
-  }
-  .work-modal-title {
-    font-size: 1.3em;
-  }
-  .work-modal-avatar {
-    width: 50px;
-    height: 50px;
-  }
-  .work-modal-avatar img {
-    width: 44px;
-    height: 44px;
-  }
-  .work-modal-close {
-    font-size: 1.5rem;
-    top: 0.5rem;
-    right: 0.5rem;
-  }
+    .work-modal-content {
+        max-width: 98vw;
+        width: 98vw;
+        min-height: 60vh;
+        max-height: 90vh;
+        padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+        font-size: 1em;
+        border-radius: 12px;
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
+
+    .work-modal-message {
+        max-height: 65vh;
+        overflow-y: auto;
+        padding-bottom: 1.5em;
+    }
+
+    .work-modal-title {
+        font-size: 1.3em;
+    }
+
+    .work-modal-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .work-modal-avatar img {
+        width: 44px;
+        height: 44px;
+    }
+
+    .work-modal-close {
+        font-size: 1.5rem;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
 }
 
 @media (max-width: 900px) and (orientation: landscape) {
-  .work-modal-content {
-    max-height: 98vh;
-    min-height: 60vh;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    overflow-y: auto;
-  }
-  .work-modal-message {
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-  .work-modal-avatar {
-    min-width: 44px;
-    min-height: 44px;
-    width: 50px;
-    height: 50px;
-    margin-bottom: 0.5em;
-    flex-shrink: 0;
-  }
-  .work-modal-avatar img {
-    min-width: 40px;
-    min-height: 40px;
-    width: 44px;
-    height: 44px;
-  }
+    .work-modal-content {
+        max-height: 98vh;
+        min-height: 60vh;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        overflow-y: auto;
+    }
+
+    .work-modal-message {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .work-modal-avatar {
+        min-width: 44px;
+        min-height: 44px;
+        width: 50px;
+        height: 50px;
+        margin-bottom: 0.5em;
+        flex-shrink: 0;
+    }
+
+    .work-modal-avatar img {
+        min-width: 40px;
+        min-height: 40px;
+        width: 44px;
+        height: 44px;
+    }
 }
 
 /* Make modal scrollable on all screens if needed */
 .work-modal-content {
-  max-height: 90vh;
-  overflow-y: auto;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .work-modal-message {
-  overflow-y: auto;
+    overflow-y: auto;
 }
 
 body.modal-open {
