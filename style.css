@@ -248,7 +248,8 @@ body.light-theme .user {
     margin: 6px 0;
     max-width: 70%;
     line-height: 1.4;
-    word-wrap: break box-shadow: 0 1px 3px rgba(255, 230, 128, 0.4);
+    word-wrap: break-word;
+    box-shadow: 0 1px 3px rgba(255, 230, 128, 0.4);
 }
 
 body:not(.light-theme) .bot::after {
@@ -445,6 +446,24 @@ body:not(.light-theme) .availability {
     cursor: pointer;
 }
 
+.btn-hire-animate {
+    animation: hire-pulse 0.5s alternate 4;
+    box-shadow: 0 0 0 4px #ffe680, 0 0 10px 2px #ffe680;
+    outline: 2px solid #ffe680;
+}
+
+@keyframes hire-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 4px #ffe680, 0 0 10px 2px #ffe680;
+    }
+
+    100% {
+        transform: scale(1.08);
+        box-shadow: 0 0 0 8px #ffe680, 0 0 20px 4px #ffe680;
+    }
+}
+
 .fade-in {
     opacity: 0;
     animation: fadeIn 0.6s forwards;
@@ -563,6 +582,57 @@ body:not(.light-theme) .availability {
     color: var(--text-color);
     margin: 0.5em 0 1.2em 0;
     text-align: center;
+}
+
+/* Chatbox Navbar */
+.chatbox-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
+    background: var(--input-bg);
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 0.5rem;
+}
+
+.chatbox-navbar-left {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.chatbox-navbar-right {
+    display: flex;
+}
+
+.chatbox-navbar-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.chatbox-navbar-btn:hover {
+    background: var(--button-hover);
+}
+
+.chatbox-navbar-btn.disabled,
+.chatbox-navbar-btn:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.summary {
+    font-style: italic;
+    color: var(--bot-text-dark);
+    background: rgba(255, 255, 0, 0.08);
+    border-left: 3px solid var(--bot-text-dark);
+    padding-left: 0.5em;
 }
 
 @media (max-width: 600px) {

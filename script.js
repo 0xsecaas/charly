@@ -29,7 +29,11 @@ window.addEventListener("DOMContentLoaded", () => {
   chatForm.style.pointerEvents = "none";
   chatInput.blur();
 
+  let greeted = false;
+
   function showGreeting() {
+    if (greeted) return;
+    greeted = true;
     showTypingIndicator();
     setTimeout(async () => {
       const welcome =
@@ -60,6 +64,21 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 400); // match CSS transition
   });
 
+  const btnReset = document.getElementById("btn-reset-chat");
+  const btnSummarize = document.getElementById("btn-summarize-chat");
+  const btnBlur = document.getElementById("btn-blur-chat");
+  const btnEmail = document.getElementById("btn-email-chat");
+
+  function updateSummarizeButton() {
+    if (!btnSummarize) return;
+    const userMsgCount = chatHistory.filter((m) => m.role === "user").length;
+    btnSummarize.disabled = userMsgCount < 3;
+    btnSummarize.classList.toggle("disabled", btnSummarize.disabled);
+  }
+
+  // Initial state
+  updateSummarizeButton();
+
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
     const message = input.value.trim();
@@ -67,12 +86,71 @@ window.addEventListener("DOMContentLoaded", () => {
 
     appendMessage("user", message);
     chatHistory.push({ role: "user", content: message });
+    updateSummarizeButton();
     input.value = "";
 
     showTypingIndicator();
     const reply = await fetchBotReply(chatHistory);
     chatHistory.push({ role: "assistant", content: reply });
   });
+
+  if (btnReset) {
+    btnReset.addEventListener("click", () => {
+      chatBox.innerHTML = "";
+      chatHistory.length = 0;
+      greeted = false;
+      showGreeting();
+      updateSummarizeButton();
+    });
+  }
+
+  if (btnSummarize) {
+    btnSummarize.addEventListener("click", async () => {
+      if (btnSummarize.disabled) return;
+      if (chatHistory.length === 0) return;
+      showTypingIndicator();
+      // Ask the bot to summarize the conversation
+      const summaryPrompt = [
+        {
+          role: "system",
+          content:
+            "Summarize the following conversation so that important details and context are preserved for future questions.",
+        },
+        ...chatHistory,
+      ];
+      const summary = await fetchBotReply(summaryPrompt);
+      removeTypingIndicator();
+      chatBox.innerHTML = "";
+      appendMessage("bot", "Summary: " + summary, "summary");
+      // Replace chatHistory with summary
+      chatHistory.length = 0;
+      chatHistory.push({ role: "system", content: "Summary: " + summary });
+    });
+  }
+
+  if (btnBlur) {
+    btnBlur.addEventListener("click", () => {
+      if (blurOverlay) {
+        blurOverlay.classList.remove("hide");
+        blurOverlay.style.display = "flex";
+      }
+    });
+  }
+
+  if (btnEmail) {
+    btnEmail.addEventListener("click", () => {
+      // Blur the chat
+      if (blurOverlay) {
+        blurOverlay.classList.remove("hide");
+        blurOverlay.style.display = "flex";
+      }
+      // Simulate clicking the 'Work with me' button
+      const realHireBtn = document.getElementById("btn-hire");
+      if (realHireBtn) {
+        realHireBtn.click();
+      }
+    });
+  }
 });
 
 function appendMessage(sender, message, extraClass = "") {
