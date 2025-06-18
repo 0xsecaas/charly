@@ -90,6 +90,7 @@ window.addEventListener("DOMContentLoaded", () => {
     input.value = "";
 
     showTypingIndicator();
+    chatBox.scrollTop = chatBox.scrollHeight;
     const reply = await fetchBotReply(chatHistory);
     chatHistory.push({ role: "assistant", content: reply });
   });
@@ -159,6 +160,8 @@ function appendMessage(sender, message, extraClass = "") {
   if (extraClass) msgDiv.classList.add(extraClass);
   msgDiv.textContent = message;
   chatBox.appendChild(msgDiv);
+  // Scroll to the bottom after adding a new message
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 function showTypingIndicator() {
